@@ -1,0 +1,285 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../static/styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <title>Inventory</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand">
+            <div class="container-fluid">
+                <span class="navbar-brand">Life</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav" id="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/inventory" class="nav-link active">Inventory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/recipes" class="nav-link">Recipes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/chores" class="nav-link">Chores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/finances" class="nav-link">Finances</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <hr>
+            <div class="row align-items-end">
+                <div class="col">
+                    <label for="collection-select" class="form-label">
+                        <b>Collection</b>
+                    </label>
+                    <select class="form-select" id="collection-select">
+                        <option hidden></option>
+                        <option value="grocery">Groceries</option>
+                        <option value="cleaning-product">Cleaning Products</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button class="btn" id="item-create-btn" data-bs-toggle="modal" data-bs-target="#item-create-modal">Add Item</button>
+                    <div class="modal fade" id="item-create-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Add Item</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form id="item-create-form">
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="item-create-collection-select" class="form-label">
+                                                        <b>Collection</b>
+                                                    </label>
+                                                    <select class="form-select" id="item-create-collection-select">
+                                                        <option hidden></option>
+                                                        <option value="grocery">Groceries</option>
+                                                        <option value="cleaning-product">Cleaning Products</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col" id="item-create-store-ctr" hidden>
+                                                    <label for="item-create-store-select" class="form-label">
+                                                        <b>Store</b>
+                                                    </label>
+                                                    <select class="form-select" id="item-create-store-select">
+                                                        <option hidden></option>
+                                                        <option value="Target">Target</option>
+                                                        <option value="Trader Joe's">Trader Joe's</option>
+                                                        <option value="Walmart">Walmart</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col" id="item-create-brand-ctr" hidden>
+                                                    <label for="item-create-brand-input" class="form-label">
+                                                        <b>Brand</b>
+                                                    </label>
+                                                    <input class="form-control" id="item-create-brand-input">
+                                                </div>
+                                                <div class="col" id="item-create-name-ctr" hidden>
+                                                    <label for="item-create-name-input" class="form-label">
+                                                        <b>Name</b>
+                                                    </label>
+                                                    <input class="form-control" id="item-create-name-input">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col" id="item-create-price-ctr" hidden>
+                                                    <label for="item-create-price-input" class="form-label">
+                                                        <b>Price</b>
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">$</span>
+                                                        <input type="number" step="0.01" class="form-control" id="item-create-price-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col" id="item-create-minimum-quantity-ctr" hidden>
+                                                    <label for="item-create-minimum-quantity-input" class="form-label">
+                                                        <b>Minimum Quantity</b>
+                                                    </label>
+                                                    <input type="number" class="form-control" id="item-create-minimum-quantity-input">
+                                                </div>
+                                                <div class="col" id="item-create-current-quantity-ctr" hidden>
+                                                    <label for="item-create-current-quantity-input" class="form-label">
+                                                        <b>Current Quantity</b>
+                                                    </label>
+                                                    <input type="number" class="form-control" id="item-create-current-quantity-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Add" class="btn">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <button class="btn" id="item-delete-btn" data-bs-toggle="modal" data-bs-target="#item-delete-modal">Remove Item</button>
+                    <div class="modal fade" id="item-delete-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Remove Item</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form id="item-delete-form">
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="item-delete-collection-select" class="form-label">
+                                                        <b>Collection</b>
+                                                    </label>
+                                                    <select class="form-select" id="item-delete-collection-select">
+                                                        <option hidden></option>
+                                                        <option value="grocery">Groceries</option>
+                                                        <option value="cleaning-product">Cleaning Products</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col" id="item-delete-item-ctr" hidden>
+                                                    <label for="item-delete-item-select" class="form-label">
+                                                        <b>Item</b>
+                                                    </label>
+                                                    <select class="form-select" id="item-delete-item-select"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Remove" class="btn">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <button class="btn" id="grocery-list-btn">Generate Grocery List</button>
+                    <br>
+                    <br>
+                    <button class="btn" id="cleaning-product-list-btn">Generate Cleaning Product List</button>
+                </div>
+                <div class="col">
+                    <button class="btn" id="receipt-create-btn" data-bs-toggle="modal" data-bs-target="#receipt-create-modal">Add Receipt</button>
+                    <div class="modal fade" id="receipt-create-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Add Receipt</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form id="receipt-create-form">
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="receipt-create-store-select" class="form-label">
+                                                        <b>Store</b>
+                                                    </label>
+                                                    <select class="form-select" id="receipt-create-store-select">
+                                                        <option hidden></option>
+                                                        <option value="walmart">Walmart</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col" id="receipt-create-store-id-ctr">
+                                                    <label for="receipt-create-store-id-input" class="form-label">
+                                                        <b>Store Id</b>
+                                                    </label>
+                                                    <input class="form-control" id="receipt-create-store-id-input">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="receipt-create-purchase-date-input" class="form-label">
+                                                        <b>Purchase Date</b>
+                                                    </label>
+                                                    <input type="date" class="form-control" id="receipt-create-purchase-date-input">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="receipt-create-card-type-select" class="form-label">
+                                                        <b>Card Type</b>
+                                                    </label>
+                                                    <select class="form-select" id="receipt-create-card-type-select">
+                                                        <option hidden></option>
+                                                        <option value="discover">Discover</option>
+                                                        <option value="visa">Visa</option>
+                                                    </select> 
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="receipt-create-last-four-digits-input" class="form-label">
+                                                        <b>Last Four Digits</b>
+                                                    </label>
+                                                    <input class="form-control" id="receipt-create-last-four-digits-input">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="receipt-create-total-input" class="form-label">
+                                                        <b>Total</b>
+                                                    </label>
+                                                    <input class="form-control" id="receipt-create-total-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Add" class="btn">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <button class="btn" id="recript-delete-btn" data-bs-toggle="modal" data-bs-target="#receipt-delete-modal">Remove Receipt</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col" id="collection-ctr" hidden>
+                    <table id="collection-table"></table>
+                    <br>
+                    <button class="btn save-btn" id="collection-save-btn">Save</button>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="../static/inventory.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    </body>
+</html>

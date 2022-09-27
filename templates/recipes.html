@@ -1,0 +1,186 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../static/styles.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.bootstrap5.min.css" integrity="sha512-w4sRMMxzHUVAyYk5ozDG+OAyOJqWAA+9sySOBWxiltj63A8co6YMESLeucKwQ5Sv7G4wycDPOmlHxkOhPW7LRg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Recipes</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand">
+            <div class="container-fluid">
+                <span class="navbar-brand">Life</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav" id="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/inventory" class="nav-link">Inventory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/recipes" class="nav-link active">Recipes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/chores" class="nav-link">Chores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/finances" class="nav-link">Finances</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <button class="btn" id="recipe-create-btn" data-bs-toggle="modal" data-bs-target="#recipe-create-modal">Create Recipe</button>
+                    <div class="modal fade" id="recipe-create-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Create Recipe</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form id="recipe-create-form">
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="recipe-create-name-input" class="form-label">
+                                                        <b>Name</b>
+                                                    </label>
+                                                    <input class="form-control" id="recipe-create-name-input" required>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="recipe-create-prep-time-input" class="form-label">
+                                                        <b>Prep Time</b>
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" id="recipe-create-prep-time-input">
+                                                        <span class="input-group-text">min(s)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="recipe-create-cook-time-input" class="form-label">
+                                                        <b>Cook Time</b>
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" id="recipe-create-cook-time-input">
+                                                        <span class="input-group-text">min(s)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="recipe-create-serves-input" class="form-label">
+                                                        <b>Serves</b>
+                                                    </label>
+                                                    <input type="number" class="form-control" id="recipe-create-serves-input" multiple>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="recipe-create-utensils-select" class="form-label">
+                                                        <b>Utensils</b>
+                                                    </label>
+                                                    <div id="recipe-create-utensils-select" multiple></div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="recipe-create-ingredients-select" class="form-label">
+                                                        <b>Ingredients</b>
+                                                    </label>
+                                                    <div id="recipe-create-ingredients-select" multiple></div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="recipe-create-directions-select" class="form-label">
+                                                        <b>Directions</b>
+                                                    </label>
+                                                    <div id="recipe-create-directions-select" multiple></div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="recipe-create-notes-select" class="form-label">
+                                                        <b>Notes</b>
+                                                    </label>
+                                                    <div id="recipe-create-notes-select" multiple></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Create" class="btn">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <button class="btn" id="recipe-delete-btn" data-bs-toggle="modal" data-bs-target="#recipe-delete-modal">Delete Recipe</button>
+                    <div class="modal fade" id="recipe-delete-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Delete Recipe</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form id="recipe-delete-form">
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="recipe-delete-name-select" class=form-label>
+                                                        <b>Name</b>
+                                                    </label>
+                                                    <select class="form-select" id="recipe-delete-name-select"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Delete" class="btn">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <button class="btn" id="recipe-list-btn">Generate Weekly Recipe List</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col" id="recipe-ctr" hidden>
+                    <table id="recipe-table"></table>
+                    <br>
+                    <button class="btn save-btn" id="recipe-save-btn">Save</button>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microplugin/0.0.3/microplugin.min.js" integrity="sha512-7amIsiQ/hxbdPNawBZwmWBWPiwQRNEJlxTj6eVO+xmWd71fs79Iydr4rYARHwDf0rKHpysFxWbj64fjPRHbqfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sifter/0.5.4/sifter.min.js" integrity="sha512-B60IUvYpG4cibCeQ30J8k/+qtN+fxKAIENb3DL2DVdzIt76IDIynAt92chPEwlCuKejOt//+OZL61i1xsvCIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/js/selectize.min.js" integrity="sha512-DBOconMAY06o4R79zeXKKM3h/g5pca647Eabb+6viK4dRpiMOlZFS4gsbukTbHo+ppdKx4yr+/0m2JnpeAIrSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="../static/recipes.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    </body>
+</html>

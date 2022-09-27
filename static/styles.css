@@ -1,0 +1,48 @@
+hr {
+    color: rebeccapurple !important;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+
+table tr + tr {
+    border-top: 1px solid rebeccapurple;
+    border-bottom: 1px solid rebeccapurple;
+}
+
+.navbar {
+    background-color: cadetblue;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: white !important;
+}
+
+.btn {
+    width: 100%;
+    border: 1px solid #CED4DA !important;
+}
+
+.btn:hover {
+    color: white !important;
+    background-color: cadetblue !important;
+    font-weight: bold;
+}
+
+.modal-header {
+    background-color: cadetblue;
+}
+
+.modal-title {
+    color: white;
+}
